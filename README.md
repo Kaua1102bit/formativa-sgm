@@ -106,7 +106,7 @@ graph TD
 
     subgraph "SGM"
         caso1([Fazer Login])
-        caso2([Gerenciar Ordens de Srviço - CRUD])
+        caso2([Gerenciar Ordens de Serviço - CRUD])
         caso3([Gerenciar Equipamentos - CRUD])
         caso4([Gerenciar Usuários])
         caso5([Acessar o DashBoard])
