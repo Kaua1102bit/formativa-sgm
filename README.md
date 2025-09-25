@@ -154,6 +154,6 @@ graph TD
     D --> SIM --> E[Gerar um Token JWT]
     E --> F[DashBoard]
     D --> NÃO --> G[Mensagem de Erro]
-    G --> E
+    G --> B
 
 ```
