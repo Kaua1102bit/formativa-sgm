@@ -118,7 +118,7 @@ graph TD
 
     Tecnico --> caso1
     Tecnico --> caso3
-    Tecnico -- caso5
+    Tecnico --> caso5
 
     Gerente --> caso1
     Gerente --> caso2
