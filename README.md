@@ -37,20 +37,21 @@ O projeto consiste no desenvolvimento de um Sistema de Gestão de Manutenção (
 ## Diagramas
 
 1. ### Classe
-Descrever o Comportamento das Entidades de um Projeto  
-    - Usuário (User/Usuario)
-        - Atributos: id, nome, email, senha, função
-        - Métodos: create, read , update, delete, login, logout
+Descrever o Comportamento das Entidades de um Projeto
 
-    - Equipamento (Equipment/Equipamento)
-        - Atributos: id, marca, modelo, localização, status, numeroSerie
-        - Métodos: CRUD
+- Usuário (User/Usuario)
+    - Atributos: id, nome, email, senha, função
+    - métodos: create, read, update, delete, login, logout
 
-    - Ordens de Serviço (OrdemServico)
-        - Atributos: id, titulo, descricao, tipoManutenção, status, idTecnico, idEquipamento
+- Equipamento (Equipment/Equipamento)
+    - Atributos: id, modelo, marca, localiza, status, numeroSerie
+    - Métodos: CRUD
+
+- Ordem de Serviço (OrdemServico)
+    - Atributos:  id, titulo, descricao, tipoManutenção, status, idTecnico, IdEquipamento
 
 ```mermaid
-   
+
 classDiagram
 
     class Usuario{
@@ -58,11 +59,11 @@ classDiagram
         +String nome
         +String email
         +String senha
-        +String funcao
+        +Enun funcao
         +login()
         +logout()
         +CRUD()
-    }   
+    }
 
     class Equipamento{
         +String id
@@ -70,7 +71,7 @@ classDiagram
         +String marca
         +String localizacao
         +boolean status
-        +string numSerie
+        +String numSerie
         +CRUD()
     }
 
@@ -81,24 +82,23 @@ classDiagram
         +String tipoManutencao
         +Enum status
         +String idTecnico
-        +String idEquipamento
+        +String IdEquipamento
         +CRUD()
     }
 
-    Usuario "1"--"1+" OrdemServico : "é responsável por"
+    Usuario "1"--"1+" OrdemServico: "é Responsável por"
     Equipamento "1"--"1+" OrdemServico: "associada a"
- 
-```
 
-2. ### Casos de Uso
-Ilustra as interações dos Diferentes Tipos de Usuários (Atores) com as funcionalidades do sistema
+```
+2. ### Caso de Uso
+Ilustra as interações dos diferentes tipos de usuários (Atores) com as funcionalidade do sistema
 
 - Caso de Uso:
-    - Técnico: Gerenciar Ordens de Serviço (CRUD) e acessar o Dashboard; 
-    - Gerente: Funções do Técnico + Gerenciamento de Equipamentos (CRUD);
+    - Técnico: Gerenciar Ordens de Serviço (CRUD) e acessar o Dashboard;
+    - Gerente: funções do técnico + Gerenciamento de Equipamentos (CRUD);
     - Admin: Gerenciar Usuários do Sistema, acessar o Dashboard
 
-    Fazer o Login -> Antes de Qualquer Ação
+    Fazer o login -> Antes de Qualquer Ação
 
 ```mermaid
 
@@ -106,15 +106,15 @@ graph TD
 
     subgraph "SGM"
         caso1([Fazer Login])
-        caso2([gerenciar Ordens de Serviços - CRUD])
+        caso2([Gerenciar Ordens de Srviço - CRUD])
         caso3([Gerenciar Equipamentos - CRUD])
         caso4([Gerenciar Usuários])
-        caso5([Acessar o Dashboard])
+        caso5([Acessar o DashBoard])
     end
 
     Tecnico([👩‍🔧Técnico de Manutenção])
-    Gerente([Gerente de Manutenção])
-    Admin([Administardor do Sistema])
+    Gerente([👩‍💼Gerente de Manutenção])
+    Admin([Administrador do Sistema])
 
     Tecnico --> caso1
     Tecnico --> caso3
@@ -133,5 +133,27 @@ graph TD
     caso1 -.-> caso3
     caso1 -.-> caso4
     caso1 -.-> caso5
+    
+```
+3. ### Fluxo
+Detalha o passo a passo para realizar uma ação no sistema
+
+- Diagrama de fluxo de Login
+    - O usuário acessa a tela de login
+    - Insere as credenciais
+    - O sistema verifica as Credenciais
+        - se sim: ger um JWT (Token) => Dashboard
+        - se não: manda uma mensagem de erro - Permanece na tela de Login
+
+```mermaid
+
+graph TD
+    A[Início] --> B{Acessa a Tela de Login}
+    B --> C[Preencher Email e Senha]
+    C --> D{Validar as Credenciais}
+    D --> SIM --> E[Gerar um Token JWT]
+    E --> F[DashBoard]
+    D --> NÃO --> G[Mensagem de Erro]
+    G --> E
 
 ```
