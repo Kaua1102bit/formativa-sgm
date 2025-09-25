@@ -112,7 +112,7 @@ graph TD
         caso5([Acessar o Dashboard])
     end
 
-    Tecnico([Técnico de Manutenção])
+    Tecnico([👩‍🔧Técnico de Manutenção])
     Gerente([Gerente de Manutenção])
     Admin([Administardor do Sistema])
 
