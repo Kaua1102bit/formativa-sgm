@@ -38,8 +38,18 @@ UsuarioSchema.pre<IUsuario>('save', async function (next) {
 })
 
 // método para compara senhas
+// quando faz o login ( compara a senha digita 
+// e criptografada com a senha criptografa do banco)
+UsuarioSchema.methods.compareSenha = function (senhaUsuario:string):
+Promise<boolean>{
+    return bcrypt.compare(senhaUsuario,this.senha);
+
+}
+
+
 
 //toMap //FromMap
+
 const Usuario: Model<IUsuario> = mongoose.models.User
 || mongoose.model<IUsuario>("Usuario", UsuarioSchema);
 
